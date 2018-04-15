@@ -9,9 +9,13 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { Churchs } from '../mocks/providers/churchs';
-import { Youtubes } from '../mocks/providers/youtubes';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+
+import { HttpModule } from '@angular/http';
+import { YtProvider } from '../providers/yt/yt';
+import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
+
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -28,6 +32,7 @@ export function createTranslateLoader(http: HttpClient) {
   imports: [
     BrowserModule,
     HttpClientModule,
+    HttpModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -47,8 +52,9 @@ export function createTranslateLoader(http: HttpClient) {
     StatusBar,
     SplashScreen,
     Churchs,
-    Youtubes,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    YtProvider,
+    YoutubeVideoPlayer
   ]
 })
 export class AppModule {}

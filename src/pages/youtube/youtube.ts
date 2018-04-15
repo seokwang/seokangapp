@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,Loading, LoadingController,  } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { Item } from '../../models/item';
-import { Youtubes } from '../../mocks/providers/youtubes';
-import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
+import { YtProvider } from './../../providers/yt/yt';
+import { Observable } from 'rxjs/Observable';
+import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 
 /**
  * Generated class for the YoutubePage page.
@@ -18,48 +19,24 @@ import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 })
 
 export class YoutubePage {
-  // videos: Item[];
-  // constructor(public navCtrl: NavController, public items: Youtubes,  private domSanitizer: DomSanitizer) { 
-  //   this.videos = this.items.query();
-  // }
-  trustedVideoUrl: SafeResourceUrl;
-  loading: Loading;
+  videos: Observable<any[]>;
 
-  videos: any = [
-      {
-          "url": "https://www.youtube.com/watch?v=3roUGgUJrzw",
-              "date": "2016-05-11"
-      },
-      {
-          "url": "https://www.youtube.com/watch?v=3roUGgUJrzw",
-              "date": "2016-05-11"
-      }
-  ];
-  constructor(public navCtrl: NavController, public items: Youtubes,  private domSanitizer: DomSanitizer,
-    public loadingCtrl: LoadingController) { 
-    
+  constructor(private navParams: NavParams, private ytProvider: YtProvider, private youtube: YoutubeVideoPlayer, private plt: Platform) {
+    let listId = this.navParams.get('id');
+
+    if(!listId) {
+      listId = "PLMNlAvDmnfgntWMN-t8bDo95jWPIOwkeO";
+    }
+    this.videos = this.ytProvider.getListVideos(listId);
   }
-
-  trustRes(url) : SafeResourceUrl {
-    var video_id = url.split('v=')[1].split('&')[0];
-    url = "https://www.youtube.com/embed/" + video_id;
-    return this.domSanitizer.bypassSecurityTrustResourceUrl(url);
+  
+  openVideo(video) {
+    if (this.plt.is('cordova')) {
+      this.youtube.openVideo(video.snippet.resourceId.videoId);
+    } else {
+      window.open('https://www.youtube.com/watch?v=' + video.snippet.resourceId.videoId);
+    }
   }
-
-  // ionViewWillEnter(): void {
-  //   this.trustedVideoUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(this.videos.url);
-
-  //   this.loading = this.loadingCtrl.create({
-  //       content: 'Please wait...'
-  //   });
-
-  //   this.loading.present();
-  // }
-
-  // handleIFrameLoadEvent(): void {
-  //     this.loading.dismiss();
-  // }
-
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad YoutubePage');
