@@ -1,0 +1,89 @@
+<ion-content scroll="false">
+  <div class="item-profile-wrapper">
+      <div class="item-profile"></div>
+      <div class="item-profile-text">선교하는 교회<br/>교육하는 교회<br/>구제하는 교회</div>
+  </div>
+  <div class="splash-info">
+    <div class="splash-logo">
+      <img src="assets/img/appicon.png" />
+    </div>
+    <div class="splash-intro">
+        <!-- {{ 'WELCOME_INTRO' | translate }} -->
+   </div>
+  </div>
+  <div padding class="card-background-page">
+    <ion-card>
+      <img src="assets/img/cards/cross2.png"/>
+      <div class="card-title">몬트리올 서광교회</div>
+      <div class="card-subtitle">예수를 나의 구주 삼고: Blessed assurance, Jesus is mine (갈 2:20)</div>
+    </ion-card>
+    <ion-card>
+        <img src="assets/img/cards/kids1.png"/>
+        <div class="card-title">서광 한글영재학교</div>
+        <div class="card-subtitle">주일 오후 4:00-06:00</div>
+    </ion-card>
+  </div>
+  <div padding>
+    <!-- ion card - start/-->
+    <ion-card>
+        <!-- <img src="assets/img/cards/maple.png"> -->
+        <ion-item>
+            <ion-avatar item-start>
+              <img src="assets/img/appicon.png">
+            </ion-avatar>
+            <div></div>
+            <h2>담임목사</h2>
+            <p>황 디모데 (Rev. Timothy Hwang)</p>
+          </ion-item>
+        <!-- <ion-card-content>
+          <p>...</p>
+        </ion-card-content> -->
+        <ion-row>
+          <ion-col>
+            <button ion-button color="primary" clear small icon-start (click)="sendmail('seokwangmc@gmail.com')">
+              <ion-icon name='mail'></ion-icon>
+              email  
+            </button>
+          </ion-col>
+          <ion-col>
+            <button ion-button color="primary" clear small icon-start (click)="call('5145810691')">
+              <ion-icon name='call'></ion-icon>
+              Tel
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    <!-- ion card - end/-->
+    <ion-list>
+      <ion-list-header>
+        협력교회
+      </ion-list-header>
+      <ion-item-sliding *ngFor="let item of currentItems">
+        <ion-item>
+          <ion-avatar item-start>
+            <img [src]="item.profilePic">
+          </ion-avatar>
+          <div></div>
+          <h2 *ngIf="item.church">{{item.church}}</h2>
+          <p>{{item.name}}</p>
+          <p *ngIf="item.position">{{item.position}}</p>
+        </ion-item>
+        <ion-item-options>
+          <button ion-button color="light" icon-start *ngIf="item.homepage" (click)="gowebsite(item.homepage)">
+            <ion-icon name="home"></ion-icon>
+            Home
+          </button>
+          <button ion-button color="primary" icon-start *ngIf="item.tel1" (click)="call(item.tel1)">
+            <ion-icon name="call"></ion-icon>
+            Tel1
+          </button>
+          <button ion-button color="secondary" icon-start *ngIf="item.tel2" (click)="call(item.tel2)">
+            <ion-icon name="call"></ion-icon>
+            Tel2
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+
+  </div>
+</ion-content>
