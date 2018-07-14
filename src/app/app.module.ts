@@ -15,6 +15,7 @@ import { HomePage } from '../pages/home/home';
 import { HttpModule } from '@angular/http';
 import { YtProvider } from '../providers/yt/yt';
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 
 // The translate loader needs to know where to load i18n files
@@ -54,7 +55,8 @@ export function createTranslateLoader(http: HttpClient) {
     Churchs,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     YtProvider,
-    YoutubeVideoPlayer
+    YoutubeVideoPlayer,
+    SocialSharing
   ]
 })
 export class AppModule {}

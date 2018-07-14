@@ -22,6 +22,7 @@
     "@angular/platform-browser-dynamic": "5.0.3",
     "@ionic-native/core": "4.4.0",
     "@ionic-native/google-maps": "^4.5.2",
+    "@ionic-native/social-sharing": "^4.7.0",
     "@ionic-native/splash-screen": "4.4.0",
     "@ionic-native/status-bar": "4.4.0",
     "@ionic-native/youtube-video-player": "^4.7.0",
@@ -35,18 +36,22 @@
     "cordova-plugin-ionic-webview": "^1.1.16",
     "cordova-plugin-splashscreen": "^4.0.3",
     "cordova-plugin-whitelist": "^1.3.1",
+    "cordova-plugin-x-socialsharing": "^5.4.0",
     "cordova-plugin-youtube-video-player": "^1.0.6",
     "cordova-sqlite-storage": "^2.1.3",
+    "es6-promise-plugin": "^4.2.2",
     "firebase": "^4.8.0",
     "ionic-angular": "3.9.2",
     "ionic-plugin-keyboard": "^2.2.1",
     "ionicons": "3.0.0",
+    "jquery": "^3.3.1",
     "rxjs": "5.5.2",
     "sw-toolbox": "3.6.0",
     "zone.js": "0.8.18"
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.1.5",
+    "@types/jquery": "^3.3.1",
     "typescript": "2.4.2"
   },
   "description": "An Ionic project",
@@ -62,7 +67,8 @@
         "API_KEY_FOR_ANDROID": "AIzaSyAOWGonAeuvMn9Rl-QTUQ3puIq-FEj1xiA",
         "API_KEY_FOR_IOS": "AIzaSyCEqprxPvgDL0wPxkQJGT4oJGd48Bd5fdM"
       },
-      "cordova-plugin-youtube-video-player": {}
+      "cordova-plugin-youtube-video-player": {},
+      "cordova-plugin-x-socialsharing": {}
     },
     "platforms": [
       "android"

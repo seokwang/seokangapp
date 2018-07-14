@@ -6,12 +6,58 @@
 -->
 <ion-content padding>
   <ion-list>
-    <button ion-item *ngFor="let video of videos | async" (click)="openVideo(video)" detail-none>
-      <ion-thumbnail item-start>
-      <img [src]="video.snippet.thumbnails.default.url">
-      </ion-thumbnail>
-    <h2>{{ video.snippet.title }}</h2>
-    <p>{{ video.snippet.description }}</p>
-    </button>
+    <ion-card *ngFor="let video of videos">
+
+      <img [src]="video.snippet.thumbnails.high.url" />
+  
+      <ion-card-content>
+        <ion-card-title>
+          {{ video.snippet.title }}
+        </ion-card-title>
+        <p>
+          {{ video.snippet.description }}
+        </p>
+      </ion-card-content>
+  
+      <ion-grid>
+      <ion-row no-padding>
+        <ion-col>
+          <button ion-button clear small color="danger" icon-only (click)="openVideo(video)">
+            <ion-icon name='play'></ion-icon>
+            Play
+          </button>
+        </ion-col>
+        <!-- <ion-col>
+          <button ion-button clear small color="prime" icon-only (click)="smsShare(video.snippet.title, video.snippet.thumbnails.high.url, video.id.videoId)" >
+            <ion-icon name='send'></ion-icon>
+          </button>
+        </ion-col> -->
+        <!-- <ion-col>
+          <button ion-button clear small color="prime" icon-only (click)="whatsappShare(video.snippet.title, video.snippet.thumbnails.high.url, video.id.videoId)">
+            <ion-icon name='logo-whatsapp'></ion-icon>
+          </button>
+        </ion-col> -->
+       <!-- <ion-col text-right>
+          <button ion-button clear small color="prime" icon-only (click)="facebookShare(video.snippet.title, video.snippet.thumbnails.high.url, video.id.videoId)">
+            <ion-icon name='logo-facebook'></ion-icon>
+          </button>
+        </ion-col>
+        <ion-col>
+          <button ion-button clear small color="prime" icon-only (click)="twitterShare(video.snippet.title, video.snippet.thumbnails.high.url, video.id.videoId)" >
+            <ion-icon name="logo-twitter"></ion-icon>
+          </button>
+        </ion-col> -->
+        <ion-col text-right>
+          <button ion-button clear small color="danger" icon-only (click)="regularShare(video.snippet.title, video.snippet.thumbnails.high.url, video.id.videoId)">
+            <ion-icon class='share-icon' name="share"></ion-icon>
+            Share
+          </button>
+        </ion-col>
+      </ion-row>
+      </ion-grid>
+    </ion-card>
+
   </ion-list>
+
+  <div class='btn-center'><button ion-button full outline id="btnmore" (click)="clickBtnMore()">더보기</button></div>
 </ion-content>
